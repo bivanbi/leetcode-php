@@ -30,6 +30,11 @@ class SolutionTest extends TestCase
         $this->assertEquals(123, $this->instance->myAtoi("  123"));
     }
 
+    public function testAtoi_withWhiteSpaceThenNegativeNumber()
+    {
+        $this->assertEquals(-42, $this->instance->myAtoi("   -42"));
+    }
+
     public function testAtoi_withNegativeNumber()
     {
         $this->assertEquals(-123, $this->instance->myAtoi("-123"));

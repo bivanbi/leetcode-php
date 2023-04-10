@@ -6,7 +6,7 @@ class Solution
 {
     private int $minAllowed = -(2 ** 31);
     private int $maxAllowed = (2 ** 31) - 1;
-    private array $numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    private string $pattern = '/^\s*([+-]?[0-9]+)/'; // capture signed number at the beginning of string; ignore leading whitespaces
 
     /**
      * @param String $s
@@ -14,33 +14,13 @@ class Solution
      */
     function myAtoi($s)
     {
-        $s = trim($s);
-        $result = "";
-        $sign = 1;
-        $firstChar = substr($s, 0, 1);
-
-        if ($firstChar === '-') {
-            $sign = -1;
-            $s = substr($s, 1);
-        } elseif ($firstChar === '+') {
-            $s = substr($s, 1);
+        $result = 0;
+        $isMatching = preg_match($this->pattern, $s, $matches);
+        if ($isMatching === 1) { // if pattern is matching
+            $result = intval($matches[1]);
+            $result = min($this->maxAllowed, $result); // if result is larger than max allowed, use max allowed
+            $result = max($this->minAllowed, $result); // if result is smaller than min allowed, use min allowed
         }
-
-        foreach (str_split($s) as $ch) {
-            if (in_array($ch, $this->numbers)) {
-                $result .= $ch;
-            } else {
-                break;
-            }
-        }
-
-        $result = intval($result) * $sign;
-        if ($result > $this->maxAllowed) {
-            return $this->maxAllowed;
-        } elseif ($result < $this->minAllowed) {
-            return $this->minAllowed;
-        }
-
         return $result;
     }
 }
