@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\TwoSum;
+namespace Tests\App\TwoSum;
 
 use App\TwoSum\Solution;
 use PHPUnit\Framework\TestCase;
