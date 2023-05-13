@@ -30,6 +30,11 @@ class SolutionTest extends TestCase
         self::assertEquals(2, $this->instance->threeSumClosest([1,1,1,0], -100));
     }
 
+    public function testCaseFour()
+    {
+        self::assertEquals(-2, $this->instance->threeSumClosest([4,0,5,-5,3,3,0,-4,-5], -2));
+    }
+
     public function testCaseLong()
     {
         $numbers = [-1,-69,544,-440,-622,-967,-61,-249,757,158,953,813,360,301,542,26,-500,-228,-693,705,-485,-734,
